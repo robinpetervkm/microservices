@@ -1,13 +1,15 @@
-#Start with a base image containing Java runtime
-FROM openjdk:21-jdk-slim
+# Build Stage
+FROM maven:3-amazoncorretto-21 AS builder
+WORKDIR /app
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# MAINTAINER instruction is deprecated in favor of using label
-# MAINTAINER eazybytes.com
+# Runtime Stage
+FROM openjdk:21-jdk-slim
 #Information around who maintains the image
 LABEL "org.opencontainers.image.authors"="eazybytes.com"
-
-# Add the application's jar to the image
-COPY target/accounts-0.0.1-SNAPSHOT.jar accounts-0.0.1-SNAPSHOT.jar
-
-# execute the application
+WORKDIR /app
+COPY --from=builder /app/target/accounts-0.0.1-SNAPSHOT.jar accounts-0.0.1-SNAPSHOT.jar
 ENTRYPOINT ["java", "-jar", "accounts-0.0.1-SNAPSHOT.jar"]
