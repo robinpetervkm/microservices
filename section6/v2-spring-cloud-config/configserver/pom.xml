@@ -64,7 +64,7 @@
 				<version>3.4.2</version>
 				<configuration>
 					<to>
-						<image>eazybytes/${project.artifactId}:s6</image>
+						<image>robinpetervkm/${project.artifactId}:s6</image>
 					</to>
 				</configuration>
 			</plugin>
