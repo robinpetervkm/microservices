@@ -1,6 +1,6 @@
 services:
   configserver:
-    image: "eazybytes/configserver:s8"
+    image: "robinpetervkm/configserver:s8"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -15,7 +15,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "eazybytes/eurekaserver:s8"
+    image: "robinpetervkm/eurekaserver:s8"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -35,7 +35,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "eazybytes/accounts:s8"
+    image: "robinpetervkm/accounts:s8"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -51,7 +51,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "eazybytes/loans:s8"
+    image: "robinpetervkm/loans:s8"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -67,7 +67,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "eazybytes/cards:s8"
+    image: "robinpetervkm/cards:s8"
     container_name: cards-ms
     ports:
       - "9000:9000"
